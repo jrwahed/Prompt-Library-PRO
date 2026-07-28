@@ -3,7 +3,10 @@
 // Convention (see the md file header):
 //   # <emoji> القسم N — <section name>       -> section header
 //   ### 🔹 <CODE> — <title>                   -> prompt header
-//   **متى تستخدمه:** ...                       -> optional "when to use" line
+//   **متى تستخدمه:** ...                       -> optional one-liner shown on cards
+//   **بيعمل إيه:** ...                          -> optional plain-Arabic explainer
+//   **إزاي تستخدمه:**                           -> optional numbered list ("1. ...")
+//   **عشان تطلع بأحسن نتيجة:**                  -> optional bullet list ("- ...")
 //   **المتغيرات:** `[x]` · `[y]`               -> informational only, not authoritative
 //   ```...```                                  -> the prompt template
 //   **💬 أوامر الشات...:** `cmd` · `cmd`        -> chat commands
@@ -22,7 +25,13 @@ const OUTPUT_PATH = join(ROOT, "content", "library.json");
 const SECTION_RE = /^#\s+(\S+)\s+القسم\s+(\d+)\s+—\s+(.+?)\s*$/u;
 const PROMPT_RE = /^###\s+🔹\s+([A-Za-z]+\d+)\s+—\s+(.+?)\s*$/u;
 const WHEN_TO_USE_RE = /^\*\*متى تستخدمه:\*\*\s*(.+?)\s*$/u;
+const WHAT_IT_DOES_RE = /^\*\*بيعمل إيه:\*\*\s*(.+?)\s*$/u;
+const HOW_TO_USE_RE = /^\*\*إزاي تستخدمه:\*\*\s*$/u;
+const TIPS_RE = /^\*\*عشان تطلع بأحسن نتيجة:\*\*\s*$/u;
+const EXAMPLES_RE = /^\*\*أمثلة للحقول:\*\*\s*$/u;
 const CHAT_COMMANDS_RE = /^\*\*💬\s*أوامر الشات.*?:\*\*\s*(.+?)\s*$/u;
+const ORDERED_ITEM_RE = /^\d+\.\s+(.+?)\s*$/u;
+const BULLET_ITEM_RE = /^[-*]\s+(.+?)\s*$/u;
 const BACKTICK_RE = /`([^`]+)`/g;
 const VARIABLE_RE = /\[([^\]]+)\]/g;
 
@@ -31,10 +40,9 @@ function extractVariables(template) {
   const ordered = [];
   for (const match of template.matchAll(VARIABLE_RE)) {
     const name = match[1].trim();
-    if (!seen.has(name)) {
-      seen.add(name);
-      ordered.push(name);
-    }
+    if (!name || seen.has(name)) continue;
+    seen.add(name);
+    ordered.push(name);
   }
   return ordered;
 }
@@ -48,6 +56,8 @@ function parse(markdown) {
   let currentPrompt = null;
   let inTemplate = false;
   let templateLines = [];
+  // Which multi-line list we are currently collecting: "howToUse" | "tips" | null
+  let listMode = null;
 
   const flushPrompt = () => {
     if (!currentPrompt) return;
@@ -58,17 +68,20 @@ function parse(markdown) {
       sectionId: currentPrompt.sectionId,
       title: currentPrompt.title,
       whenToUse: currentPrompt.whenToUse,
+      whatItDoes: currentPrompt.whatItDoes,
+      howToUse: currentPrompt.howToUse,
+      tips: currentPrompt.tips,
+      examples: currentPrompt.examples,
       template,
       variables: extractVariables(template),
       chatCommands: currentPrompt.chatCommands,
     });
     currentPrompt = null;
     templateLines = [];
+    listMode = null;
   };
 
-  for (const rawLine of lines) {
-    const line = rawLine;
-
+  for (const line of lines) {
     if (inTemplate) {
       if (line.trim() === "```") {
         inTemplate = false;
@@ -82,12 +95,7 @@ function parse(markdown) {
     if (sectionMatch) {
       flushPrompt();
       const [, emoji, number, name] = sectionMatch;
-      currentSection = {
-        id: `section-${number}`,
-        number: Number(number),
-        emoji,
-        name,
-      };
+      currentSection = { id: `section-${number}`, number: Number(number), emoji, name };
       sections.push(currentSection);
       continue;
     }
@@ -101,6 +109,10 @@ function parse(markdown) {
         title,
         sectionId: currentSection ? currentSection.id : "uncategorized",
         whenToUse: undefined,
+        whatItDoes: undefined,
+        howToUse: [],
+        tips: [],
+        examples: {},
         chatCommands: [],
       };
       continue;
@@ -108,14 +120,63 @@ function parse(markdown) {
 
     if (!currentPrompt) continue;
 
+    // While collecting a list, keep taking matching items and skip blank lines.
+    // Anything else ends the list.
+    if (listMode) {
+      const itemRe = listMode === "howToUse" ? ORDERED_ITEM_RE : BULLET_ITEM_RE;
+      const itemMatch = line.match(itemRe);
+      if (itemMatch) {
+        if (listMode === "examples") {
+          // "- <variable>: <example value>" — split on the first colon only,
+          // since example values routinely contain colons of their own.
+          const separator = itemMatch[1].indexOf(":");
+          if (separator === -1) {
+            throw new Error(
+              `Malformed example for ${currentPrompt.code}: "${itemMatch[1]}" — expected "- اسم المتغير: المثال".`
+            );
+          }
+          const name = itemMatch[1].slice(0, separator).trim();
+          const value = itemMatch[1].slice(separator + 1).trim();
+          if (name && value) currentPrompt.examples[name] = value;
+        } else {
+          currentPrompt[listMode].push(itemMatch[1]);
+        }
+        continue;
+      }
+      if (line.trim() === "") continue;
+      listMode = null;
+      // fall through so this line is still matched against the rules below
+    }
+
     if (line.trim() === "```") {
       inTemplate = true;
+      continue;
+    }
+
+    if (HOW_TO_USE_RE.test(line)) {
+      listMode = "howToUse";
+      continue;
+    }
+
+    if (TIPS_RE.test(line)) {
+      listMode = "tips";
+      continue;
+    }
+
+    if (EXAMPLES_RE.test(line)) {
+      listMode = "examples";
       continue;
     }
 
     const whenToUseMatch = line.match(WHEN_TO_USE_RE);
     if (whenToUseMatch) {
       currentPrompt.whenToUse = whenToUseMatch[1];
+      continue;
+    }
+
+    const whatItDoesMatch = line.match(WHAT_IT_DOES_RE);
+    if (whatItDoesMatch) {
+      currentPrompt.whatItDoes = whatItDoesMatch[1];
       continue;
     }
 
@@ -142,17 +203,15 @@ function main() {
     );
   }
 
-  const library = {
-    sections,
-    prompts,
-    generatedAt: new Date().toISOString(),
-  };
+  const library = { sections, prompts, generatedAt: new Date().toISOString() };
 
   mkdirSync(dirname(OUTPUT_PATH), { recursive: true });
   writeFileSync(OUTPUT_PATH, JSON.stringify(library, null, 2) + "\n", "utf-8");
 
+  const documented = prompts.filter((p) => p.whatItDoes).length;
   console.log(
-    `✅ Built ${prompts.length} prompts across ${sections.length} sections -> ${OUTPUT_PATH}`
+    `✅ Built ${prompts.length} prompts across ${sections.length} sections ` +
+      `(${documented} with a "بيعمل إيه" explainer) -> ${OUTPUT_PATH}`
   );
 }
 

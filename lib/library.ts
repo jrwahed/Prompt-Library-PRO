@@ -1,7 +1,11 @@
 import rawLibrary from "@/content/library.json";
 import type { PromptEntry, PromptLibrary, PromptSection } from "@/lib/types";
 
-const library = rawLibrary as PromptLibrary;
+// TypeScript widens the generated JSON into a union of per-prompt literal
+// shapes, so `examples` looks like `{ الموضوع?: undefined; ... }` rather than
+// a plain record. The generator is the schema authority here, so go through
+// `unknown` instead of loosening PromptEntry.
+const library = rawLibrary as unknown as PromptLibrary;
 
 export function getSections(): PromptSection[] {
   return [...library.sections].sort((a, b) => a.number - b.number);

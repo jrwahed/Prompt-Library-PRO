@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Check, Copy, Heart, Sparkles } from "lucide-react";
+import { Check, Copy, Heart, Sparkles, Wand2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { PromptGuide } from "@/components/prompt/PromptGuide";
 import { fillTemplate } from "@/lib/library";
 import {
   addRecent,
@@ -49,6 +50,17 @@ export function PromptWorkspace({
   );
 
   const filledCount = prompt.variables.filter((v) => (values[v] ?? "").trim()).length;
+
+  const examples = prompt.examples ?? {};
+  const hasExamples = prompt.variables.some((v) => examples[v]);
+
+  const fillWithExample = () => {
+    const filled: Record<string, string> = {};
+    for (const variable of prompt.variables) {
+      if (examples[variable]) filled[variable] = examples[variable];
+    }
+    setValues(filled);
+  };
 
   const handleValueChange = (variable: string, value: string) => {
     setValues((prev) => ({ ...prev, [variable]: value }));
@@ -109,6 +121,8 @@ export function PromptWorkspace({
         </Button>
       </div>
 
+      <PromptGuide prompt={prompt} />
+
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
           <CardHeader>
@@ -132,16 +146,30 @@ export function PromptWorkspace({
                 البرومبت ده مفهوش متغيرات — جاهز للنسخ زي ما هو.
               </p>
             ) : (
-              prompt.variables.map((variable) => (
-                <label key={variable} className="flex flex-col gap-1.5">
-                  <span className="text-sm font-semibold text-content">{variable}</span>
-                  <Input
-                    placeholder={variable}
-                    value={values[variable] ?? ""}
-                    onChange={(e) => handleValueChange(variable, e.target.value)}
-                  />
-                </label>
-              ))
+              <>
+                {hasExamples && (
+                  <button
+                    type="button"
+                    onClick={fillWithExample}
+                    className="flex w-fit items-center gap-1.5 rounded-lg border border-dashed border-brand-300 px-3 py-1.5 text-xs font-semibold text-brand-600 transition-colors hover:border-brand-500 hover:bg-brand-50 dark:border-brand-700 dark:text-brand-300 dark:hover:bg-brand-900/40"
+                  >
+                    <Wand2 className="h-3.5 w-3.5" />
+                    املا بمثال جاهز
+                  </button>
+                )}
+                {prompt.variables.map((variable) => (
+                  <label key={variable} className="flex flex-col gap-1.5">
+                    <span className="text-sm font-semibold text-content">{variable}</span>
+                    <Input
+                      placeholder={
+                        examples[variable] ? `مثال: ${examples[variable]}` : variable
+                      }
+                      value={values[variable] ?? ""}
+                      onChange={(e) => handleValueChange(variable, e.target.value)}
+                    />
+                  </label>
+                ))}
+              </>
             )}
           </CardContent>
         </Card>
@@ -152,8 +180,12 @@ export function PromptWorkspace({
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-900 font-latin text-xs font-bold text-white dark:bg-brand-500">
                 2
               </span>
-              المعاينة الحية
+              انسخ ده والزقه في الـ AI
             </CardTitle>
+            <p className="text-xs leading-relaxed text-content-subtle">
+              الكلام ده موجّه للـ AI مش ليك — مش لازم تقراه. المهم إنك ملأت الحقول
+              وبعدين اضغط نسخ.
+            </p>
           </CardHeader>
           <CardContent className="flex flex-1 flex-col gap-4">
             <pre

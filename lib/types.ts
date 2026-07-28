@@ -11,7 +11,16 @@ export interface PromptEntry {
   code: string;
   sectionId: string;
   title: string;
+  /** متى تستخدمه — السطر اللي بيظهر على الكارت. */
   whenToUse?: string;
+  /** بيعمل إيه — شرح بالعربي البسيط لناتج البرومبت. */
+  whatItDoes?: string;
+  /** إزاي تستخدمه — خطوات مرقّمة. */
+  howToUse: string[];
+  /** عشان تطلع بأحسن نتيجة — نصايح عملية. */
+  tips: string[];
+  /** مثال جاهز لكل متغير — بيظهر كـ placeholder وبيملا الفورم بضغطة. */
+  examples: Record<string, string>;
   template: string;
   variables: string[];
   chatCommands: string[];
