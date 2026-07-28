@@ -81,18 +81,12 @@
     {
       "id": "section-14",
       "number": 14,
-      "emoji": "⚙️",
-      "name": "مهندس الأتمتة (Automation)"
-    },
-    {
-      "id": "section-15",
-      "number": 15,
       "emoji": "🧭",
       "name": "الإدارة والمالية (Management & Finance)"
     },
     {
-      "id": "section-16",
-      "number": 16,
+      "id": "section-15",
+      "number": 15,
       "emoji": "🧩",
       "name": "أي حد في الشركة (Universal)"
     }
@@ -728,45 +722,9 @@
       ]
     },
     {
-      "id": "au1",
-      "code": "AU1",
-      "sectionId": "section-14",
-      "title": "تصميم workflow على n8n",
-      "template": "CONFIG: language=ar · depth=expert · format=steps\n\nROLE: أنت Automation Architect خبير n8n بتصمم workflows موثوقة.\n\nCONTEXT: العملية: [العملية] · الـ trigger: [الـ trigger] · الأنظمة: [الأنظمة] · الناتج: [الناتج].\n\nTASK: صمّم الـ workflow كامل.\n\nOUTPUT: الـ nodes بالترتيب + data mapping + الـ branches/conditions + error handling + credentials + 3 حالات اختبار.\n\nQUALITY BAR: production-ready. اذكر أي مخاطرة (rate limits/duplicates).",
-      "variables": [
-        "العملية",
-        "الـ trigger",
-        "الأنظمة",
-        "الناتج"
-      ],
-      "chatCommands": [
-        "حوّله n8n JSON.",
-        "ضيف إشعار Slack لو فشل.",
-        "نسخة Make."
-      ]
-    },
-    {
-      "id": "au2",
-      "code": "AU2",
-      "sectionId": "section-14",
-      "title": "مواصفات AI Agent",
-      "template": "CONFIG: language=ar · depth=expert · format=markdown\n\nROLE: أنت AI Agent Designer بتبني agents موثوقة بحدود واضحة.\n\nCONTEXT: المهمة: [مهمة الـ agent] · المستخدم: [المستخدم] · الأدوات: [الأدوات] · ممنوع يعمل: [الحدود].\n\nTASK: صمّم مواصفات الـ agent.\n\nOUTPUT: system prompt جاهز + قائمة tools ومتى يستخدم كل واحد + guardrails ومتى يصعّد لإنسان + edge cases + مقاييس نجاح.\n\nQUALITY BAR: محدد المهمة. tool-calling واضح.",
-      "variables": [
-        "مهمة الـ agent",
-        "المستخدم",
-        "الأدوات",
-        "الحدود"
-      ],
-      "chatCommands": [
-        "اكتب الـ system prompt نهائي.",
-        "ضيف RAG tool.",
-        "إزاي أمنع الهلوسة؟"
-      ]
-    },
-    {
       "id": "mg1",
       "code": "MG1",
-      "sectionId": "section-15",
+      "sectionId": "section-14",
       "title": "قرار استراتيجي (Debate)",
       "template": "CONFIG: language=ar · depth=expert · format=markdown\n\nROLE: أنت مستشار استراتيجي بتعرض الجهتين بتوازن قبل التوصية.\n\nCONTEXT: القرار: [القرار] · الخيارات: [الخيارات] · معايير التقييم: [المعايير].\n\nTASK: حلّل بأسلوب debate ثم وصّي.\n\nOUTPUT: حجج مع/ضد كل خيار + Recommendation Matrix + التوصية والسبب + أكبر مخاطرة وكيف نخفّفها.\n\nQUALITY BAR: متوازن فعلًا. التوصية واضحة مش \"يعتمد\".",
       "variables": [
@@ -783,7 +741,7 @@
     {
       "id": "mg2",
       "code": "MG2",
-      "sectionId": "section-15",
+      "sectionId": "section-14",
       "title": "تلخيص اجتماع لأكشنز",
       "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت Chief of Staff بتحوّل الكلام لقرارات ومسؤوليات.\n\nCONTEXT: نوتس الاجتماع:\n[نوتس الاجتماع]\n\nTASK: لخّص واستخرج الأكشنز.\n\nOUTPUT: القرارات + جدول أكشنز (المهمة/المسؤول/الموعد) + النقاط المعلّقة + المخاطر.\n\nQUALITY BAR: كل أكشن له مسؤول وموعد. المسؤول الغامض علّمه [؟].",
       "variables": [
@@ -799,7 +757,7 @@
     {
       "id": "mg3",
       "code": "MG3",
-      "sectionId": "section-15",
+      "sectionId": "section-14",
       "title": "عرض تسعير/باقات (Pricing)",
       "template": "CONFIG: language=ar · depth=expert · format=markdown\n\nROLE: أنت خبير تسعير value-based.\n\nCONTEXT: المنتج: [المنتج/الخدمة] · تكلفتنا: [التكلفة] · الجمهور: [الجمهور] · المنافسون: [المنافسين].\n\nTASK: صمّم استراتيجية تسعير وباقات.\n\nOUTPUT: value metric المقترح + 3 باقات (اسم/سعر/مميزات/لمين) + الـ anchor والموصى به + مبررات نفسية للتسعير + مخاطر.\n\nQUALITY BAR: مبني على القيمة مش التكلفة+هامش بس. 3 باقات تدفع للاختيار.",
       "variables": [
@@ -817,7 +775,7 @@
     {
       "id": "u1",
       "code": "U1",
-      "sectionId": "section-16",
+      "sectionId": "section-15",
       "title": "أي مهمة (الهيكل الشامل)",
       "whenToUse": "لو مفيش برومبت جاهز للي عايزه.",
       "template": "CONFIG: language=ar · depth=[quick/pro/expert] · format=[markdown/table/steps]\n\nROLE: أنت [حدد الدور المناسب للمهمة].\n\nCONTEXT: [الشركة/الموقف/البيانات المتاحة] · الجمهور: [مين هيستخدم الناتج].\n\nTASK: [المطلوب في جملة واضحة].\n\nCONSTRAINTS: [قيود: وقت/ميزانية/نبرة].\n\nOUTPUT: سلّم [الشكل] منظم وجاهز للتنفيذ.\n\nQUALITY BAR: عملي بدون حشو. لو ناقصك معلومة جوهرية، اسألني 3 أسئلة الأول.",
@@ -842,7 +800,7 @@
     {
       "id": "u2",
       "code": "U2",
-      "sectionId": "section-16",
+      "sectionId": "section-15",
       "title": "لخّص وبسّط أي حاجة",
       "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت بتلخّص وتبسّط بدون ما تفقد الجوهر.\n\nCONTEXT: المحتوى: [النص/المستند] · التلخيص لـ: [لمين].\n\nTASK: لخّص وبسّط.\n\nOUTPUT: ملخص 3 أسطر + أهم النقاط + إيه اللي يهمني أعمله (action) + سؤال لو فيه غموض.\n\nQUALITY BAR: مبسّط لمستوى الجمهور. بدون حشو.",
       "variables": [

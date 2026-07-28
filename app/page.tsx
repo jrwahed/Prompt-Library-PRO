@@ -10,7 +10,6 @@ export default function HomePage() {
   const stats = [
     { value: sections.length, label: "قسم" },
     { value: prompts.length, label: "برومبت جاهز" },
-    { value: "0", label: "تكلفة تشغيل" },
   ];
 
   return (
@@ -31,8 +30,8 @@ export default function HomePage() {
               </span>
             </h1>
             <p className="text-pretty text-base leading-relaxed text-content-muted sm:text-lg">
-              اختار قسم، افتح برومبت جاهز، املأ الفراغات، وانسخ النتيجة. من غير تجربة
-              وتخمين، ومن غير ما تدفع على كل استخدام.
+              اختار قسم، افتح برومبت جاهز، املأ الفراغات، وانسخ النتيجة — من غير تجربة
+              وتخمين في كل مرة.
             </p>
           </div>
 

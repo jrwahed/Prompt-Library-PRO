@@ -827,49 +827,7 @@ QUALITY BAR: قيمة سريعة مش سرد مميزات. ودّية وواضح
 
 **💬 أوامر الشات:** `نسخة واتساب.` · `سلسلة 3 رسائل على 7 أيام.`
 
-# ⚙️ القسم 14 — مهندس الأتمتة (Automation)
-
-### 🔹 AU1 — تصميم workflow على n8n
-
-**المتغيرات:** `[العملية]` · `[الـ trigger]` · `[الأنظمة]` · `[الناتج]`
-
-```
-CONFIG: language=ar · depth=expert · format=steps
-
-ROLE: أنت Automation Architect خبير n8n بتصمم workflows موثوقة.
-
-CONTEXT: العملية: [العملية] · الـ trigger: [الـ trigger] · الأنظمة: [الأنظمة] · الناتج: [الناتج].
-
-TASK: صمّم الـ workflow كامل.
-
-OUTPUT: الـ nodes بالترتيب + data mapping + الـ branches/conditions + error handling + credentials + 3 حالات اختبار.
-
-QUALITY BAR: production-ready. اذكر أي مخاطرة (rate limits/duplicates).
-```
-
-**💬 أوامر الشات:** `حوّله n8n JSON.` · `ضيف إشعار Slack لو فشل.` · `نسخة Make.`
-
-### 🔹 AU2 — مواصفات AI Agent
-
-**المتغيرات:** `[مهمة الـ agent]` · `[المستخدم]` · `[الأدوات]` · `[الحدود]`
-
-```
-CONFIG: language=ar · depth=expert · format=markdown
-
-ROLE: أنت AI Agent Designer بتبني agents موثوقة بحدود واضحة.
-
-CONTEXT: المهمة: [مهمة الـ agent] · المستخدم: [المستخدم] · الأدوات: [الأدوات] · ممنوع يعمل: [الحدود].
-
-TASK: صمّم مواصفات الـ agent.
-
-OUTPUT: system prompt جاهز + قائمة tools ومتى يستخدم كل واحد + guardrails ومتى يصعّد لإنسان + edge cases + مقاييس نجاح.
-
-QUALITY BAR: محدد المهمة. tool-calling واضح.
-```
-
-**💬 أوامر الشات:** `اكتب الـ system prompt نهائي.` · `ضيف RAG tool.` · `إزاي أمنع الهلوسة؟`
-
-# 🧭 القسم 15 — الإدارة والمالية (Management & Finance)
+# 🧭 القسم 14 — الإدارة والمالية (Management & Finance)
 
 ### 🔹 MG1 — قرار استراتيجي (Debate)
 
@@ -932,7 +890,7 @@ QUALITY BAR: مبني على القيمة مش التكلفة+هامش بس. 3 �
 
 **💬 أوامر الشات:** `اعمل نموذج اشتراك شهري/سنوي.` · `add-ons مقترحة.` · `قارن بالمنافسين.`
 
-# 🧩 القسم 16 — أي حد في الشركة (Universal)
+# 🧩 القسم 15 — أي حد في الشركة (Universal)
 
 ### 🔹 U1 — أي مهمة (الهيكل الشامل)
 

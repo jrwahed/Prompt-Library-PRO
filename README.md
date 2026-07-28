@@ -2,14 +2,14 @@
 
 أداة داخلية لـ **Brand Shift Marketing Agency** — Template Engine لبرومبتات جاهزة. الموظف بيختار قسم، يختار برومبت، يملأ الفراغات `[كده]`، وياخد البرومبت النهائي جاهز للنسخ.
 
-**مفيش AI في الاستخدام الأساسي.** المكتبة كلها بيانات ثابتة في `content/library.json` (متولّدة من `Company-Prompt-Library-PRO.md`)، والتطبيق كله client-side فوق Next.js — صفر تكلفة، صفر API، فوري. زرار الـ "حسّن بالـ AI" اختياري ومتوقف افتراضيًا (شوف تحت).
+**مفيش AI في الاستخدام الأساسي.** المكتبة كلها بيانات ثابتة في `content/library.json` (متولّدة من `Company-Prompt-Library-PRO.md`)، والتطبيق كله client-side فوق Next.js — من غير API، وفوري. زرار الـ "حسّن بالـ AI" اختياري ومتوقف افتراضيًا (شوف تحت).
 
 ## التقنيات
 
 - Next.js 15 (App Router) + TypeScript + Tailwind v4
 - مكوّنات UI بأسلوب shadcn/ui (مبنية يدويًا محليًا في `components/ui/`، من غير أي اعتماد على شبكة)
 - من غير auth، من غير قاعدة بيانات، من غير backend حقيقي (ماعدا endpoint اختياري لميزة الـ AI)
-- كل الصفحات static generation (`generateStaticParams`) — جاهزة للنشر على Vercel كـ static/edge بأقل تكلفة
+- كل الصفحات static generation (`generateStaticParams`) — جاهزة للنشر على Vercel كـ static/edge
 
 ## تشغيله محليًا
 
