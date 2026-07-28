@@ -1,0 +1,860 @@
+{
+  "sections": [
+    {
+      "id": "section-1",
+      "number": 1,
+      "emoji": "✍️",
+      "name": "نظام الكونتنت الهيومن (Anti-AI Content System)"
+    },
+    {
+      "id": "section-2",
+      "number": 2,
+      "emoji": "🖋️",
+      "name": "الكوبي رايتر (Copywriter)"
+    },
+    {
+      "id": "section-3",
+      "number": 3,
+      "emoji": "🤝",
+      "name": "Account Manager"
+    },
+    {
+      "id": "section-4",
+      "number": 4,
+      "emoji": "💰",
+      "name": "عروض الأسعار (Quotation)"
+    },
+    {
+      "id": "section-5",
+      "number": 5,
+      "emoji": "🔎",
+      "name": "الريسرش (Research)"
+    },
+    {
+      "id": "section-6",
+      "number": 6,
+      "emoji": "🗺️",
+      "name": "الخطط والاستراتيجية (Plans & Strategy)"
+    },
+    {
+      "id": "section-7",
+      "number": 7,
+      "emoji": "🎨",
+      "name": "الديزاينر (Designer)"
+    },
+    {
+      "id": "section-8",
+      "number": 8,
+      "emoji": "🎬",
+      "name": "الفيديو إيديتور / كرييتور (Video)"
+    },
+    {
+      "id": "section-9",
+      "number": 9,
+      "emoji": "📞",
+      "name": "السيلز (Sales)"
+    },
+    {
+      "id": "section-10",
+      "number": 10,
+      "emoji": "👨‍💻",
+      "name": "المطورين والمبرمجين (Developers)"
+    },
+    {
+      "id": "section-11",
+      "number": 11,
+      "emoji": "👥",
+      "name": "الموارد البشرية (HR)"
+    },
+    {
+      "id": "section-12",
+      "number": 12,
+      "emoji": "📣",
+      "name": "التسويق والسوشيال (Marketing & Social)"
+    },
+    {
+      "id": "section-13",
+      "number": 13,
+      "emoji": "🎧",
+      "name": "نجاح وخدمة العملاء (Customer Success)"
+    },
+    {
+      "id": "section-14",
+      "number": 14,
+      "emoji": "⚙️",
+      "name": "مهندس الأتمتة (Automation)"
+    },
+    {
+      "id": "section-15",
+      "number": 15,
+      "emoji": "🧭",
+      "name": "الإدارة والمالية (Management & Finance)"
+    },
+    {
+      "id": "section-16",
+      "number": 16,
+      "emoji": "🧩",
+      "name": "أي حد في الشركة (Universal)"
+    }
+  ],
+  "prompts": [
+    {
+      "id": "hc1",
+      "code": "HC1",
+      "sectionId": "section-1",
+      "title": "استخراج المادة الخام (اعمله الأول دايمًا)",
+      "whenToUse": "قبل أي بوست/مقال/إيميل. بدل ما الـ AI يخترع، بيسحب منك القصة الحقيقية.",
+      "template": "CONFIG: language=ar · depth=pro · format=steps\n\nROLE: أنت محرر محتوى بيعمل انترفيو معايا عشان يطلّع مادة خام حقيقية أكتب منها.\n\nTASK: قبل ما تكتب أي حاجة عن [الموضوع] لـ [المنصة]، اسألني 5–7 أسئلة قصيرة تطلّع:\n- قصة أو موقف حقيقي حصل معايا له علاقة بالموضوع.\n- رقم أو تفصيلة ملموسة (تاريخ، اسم، نتيجة).\n- رأي عندي مخالف للسائد.\n- الغلطة اللي وقعت فيها والدرس منها.\n- مين بالظبط اللي هيقرأ ده وإيه اللي يهمه.\n\nاستنى ردي على كل الأسئلة، وبعدين قولي: \"تمام، دلوقتي عندي مادة أكتب منها.\" متكتبش الكونتنت لسه.\n\nQUALITY BAR: أسئلة محددة تطلّع تفاصيل، مش أسئلة عامة. سؤال واحد كل مرة لو تحب.",
+      "variables": [
+        "الموضوع",
+        "المنصة"
+      ],
+      "chatCommands": [
+        "دلوقتي اكتب البوست من كلامي.",
+        "ركّز على القصة بتاعت [X]."
+      ]
+    },
+    {
+      "id": "hc2",
+      "code": "HC2",
+      "sectionId": "section-1",
+      "title": "الكتابة بصوت بشري (بعد HC1)",
+      "whenToUse": "بعد ما جمعت المادة، عايز تحوّلها كونتنت يقرأه الناس.",
+      "template": "CONFIG: language=ar · depth=expert · format=markdown\n\nROLE: أنت كاتب محتوى بشري بيكتب زي ما البني آدم بيتكلم، مش زي الـ AI.\n\nCONTEXT: المادة الخام من صاحب المحتوى:\n[المادة الخام]\nالمنصة: [المنصة] · النبرة: [النبرة، مثال: صريحة/ودّية].\n\nTASK: اكتب الكونتنت من المادة دي بس.\n\nقواعد الكتابة البشرية (التزم بيها حرفيًا):\n- ابدأ بموقف أو جملة فيها توتر/فضول، مش بمقدمة عامة.\n- جُمل متفاوتة الطول: قصيرة وبعدها طويلة. مفيش إيقاع رتيب.\n- رأي واضح وإحساس حقيقي، مش سرد محايد.\n- ممنوع كلمات الـ AI الكليشيه: \"يمثّل نقلة\"، \"في عالم يتسم بـ\"، \"مما يعكس\"، \"بمثابة\"، \"الجدير بالذكر\"، \"في الختام\".\n- ممنوع القوائم الثلاثية المتكررة (rule of three) والـ em-dash المتكرر.\n- ممنوع المبالغة في الأهمية (\"خطوة محورية\"، \"بصمة لا تُمحى\").\n- تفاصيل ملموسة من كلامي (أرقام/أسماء/مواقف)، مش عموميات.\n- سيب تلقائية بشرية: جملة ناقصة، استطراد بسيط، سؤال في النص.\n\nفي الآخر اعمل تمريرة أخيرة: اسأل نفسك \"إيه اللي لسه بيبان AI هنا؟\" وصلّحه.\n\nQUALITY BAR: لو حد قرأه يحس إن إنسان كتبه من تجربة، مش موديل.",
+      "variables": [
+        "المادة الخام",
+        "المنصة",
+        "النبرة، مثال: صريحة/ودّية"
+      ],
+      "chatCommands": [
+        "خليه أقصر وأصدق.",
+        "ابدأ بالقصة على طول من غير مقدمة.",
+        "زوّد رأي أجرأ.",
+        "اعمل 3 هوكس مختلفة للبداية."
+      ]
+    },
+    {
+      "id": "hc3",
+      "code": "HC3",
+      "sectionId": "section-1",
+      "title": "تمريرة Humanize لأي نص جاهز",
+      "whenToUse": "عندك نص (كتبته أو الـ AI كتبه) وعايز تشيل منه شكل الـ AI.",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت محرر متخصص في إزالة علامات الكتابة الآلية.\n\nTASK: خُد النص ده وخلّيه بشري:\n[النص]\n\nاعمل:\n1) شيل كل كلمات الـ AI الكليشيه والمبالغات.\n2) كسّر الإيقاع الرتيب — نوّع طول الجمل.\n3) حوّل السرد المحايد لرأي وإحساس.\n4) استبدل العموميات بتفاصيل ملموسة (لو ناقصة، اسألني عنها).\n5) تمريرة أخيرة: قولي إيه اللي كان بيبان AI وليه.\n\nسلّم: النسخة البشرية + قائمة قصيرة بأكبر 3 تغييرات عملتها.\n\nQUALITY BAR: نفس المعنى، روح مختلفة. متزوّدش معلومات مخترعة.",
+      "variables": [
+        "النص"
+      ],
+      "chatCommands": [
+        "خليه أكثر رسمية بس يفضل بشري.",
+        "النسخة دي لـ LinkedIn."
+      ]
+    },
+    {
+      "id": "cw1",
+      "code": "CW1",
+      "sectionId": "section-2",
+      "title": "10 هوكس (Hooks) بزوايا مختلفة",
+      "whenToUse": "أول سطر هو 80% من النجاح. عايز خيارات كتير تختار منها.",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت كوبي رايتر بتكتب هوكس بتوقف الـ scroll.\n\nCONTEXT: الموضوع: [الموضوع] · الجمهور: [الجمهور] · المنصة: [المنصة].\n\nTASK: اكتب 10 هوكس، كل واحد بزاوية مختلفة:\nرقم صادم · سؤال محرج · رأي مخالف · قصة \"كنت بعمل غلط\" · قبل/بعد · تحذير · سر · خطأ شائع · وعد جريء · فضول ناقص.\n\nسلّم الـ 10 مرقّمين + علّم على أقوى 3 وليه.\n\nQUALITY BAR: كل هوك يقف لوحده. بدون كليشيه. لغة الجمهور.",
+      "variables": [
+        "الموضوع",
+        "الجمهور",
+        "المنصة"
+      ],
+      "chatCommands": [
+        "اكتب 10 كمان.",
+        "الهوك رقم 4 اعملّي منه بوست كامل.",
+        "خليهم لفيديو ريلز."
+      ]
+    },
+    {
+      "id": "cw2",
+      "code": "CW2",
+      "sectionId": "section-2",
+      "title": "قصة تسويقية (Storytelling)",
+      "whenToUse": "لما عايز تبيع فكرة أو منتج من خلال قصة تعلق في الدماغ.",
+      "template": "CONFIG: language=ar · depth=expert · format=markdown\n\nROLE: أنت كاتب بيبني قصص تسويقية بمنهجية البطل (Hero's Journey مبسّطة).\n\nCONTEXT: الرسالة اللي عايز أوصلها: [الرسالة]. المنتج/الفكرة: [المنتج/الفكرة]. الجمهور: [الجمهور].\n\nTASK: قبل ما تكتب، اسألني: مين البطل الحقيقي (عميل/أنا)؟ إيه المشكلة اللي كان فيها؟ إيه التحول؟\nبعدين اكتب القصة: موقف بداية فيه ألم → صراع → لحظة تحول → النتيجة → الدرس/الدعوة.\n\nQUALITY BAR: القصة تخدم الرسالة مش استعراض. تفاصيل حسية. نهاية فيها CTA طبيعي مش مقحم.",
+      "variables": [
+        "الرسالة",
+        "المنتج/الفكرة",
+        "الجمهور"
+      ],
+      "chatCommands": [
+        "خليها أقصر لبوست.",
+        "اعمل نسخة القصة فيها أنا البطل.",
+        "حوّلها script فيديو."
+      ]
+    },
+    {
+      "id": "cw3",
+      "code": "CW3",
+      "sectionId": "section-2",
+      "title": "إيميل تسويقي / نيوزليتر",
+      "whenToUse": "إيميل لقائمة عملاء يتفتح ويتقري.",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت email copywriter بتكتب إيميلات بتتفتح وبيتقروا للآخر.\n\nCONTEXT: الموضوع: [الموضوع] · الهدف: [الهدف] · الجمهور: [الجمهور] · العرض: [العرض/CTA].\n\nTASK: اكتب الإيميل + 3 subject lines.\n\nالقواعد: subject يثير الفضول (بدون clickbait كذّاب) · افتتاحية شخصية · فقرة أو اتنين قصار · CTA واحد واضح · نبرة بني آدم بيكلم صاحبه.\n\nQUALITY BAR: بشري، مش نشرة شركة رسمية. سطر أول يخلي القارئ يكمّل.",
+      "variables": [
+        "الموضوع",
+        "الهدف",
+        "الجمهور",
+        "العرض/CTA"
+      ],
+      "chatCommands": [
+        "اعمل نسخة أقصر.",
+        "subject lines 5 كمان.",
+        "حوّله سلسلة 3 إيميلات."
+      ]
+    },
+    {
+      "id": "am1",
+      "code": "AM1",
+      "sectionId": "section-3",
+      "title": "تجهيز اجتماع مراجعة العميل (QBR / Check-in)",
+      "template": "CONFIG: language=ar · depth=expert · format=markdown\n\nROLE: أنت Account Manager محترف بتحوّل اجتماع المراجعة لفرصة تعميق العلاقة و upsell.\n\nCONTEXT: العميل: [العميل] · الخدمة: [الخدمة] · نتائج الفترة: [نتائج الفترة] · مشاكل: [أي مشاكل].\n\nTASK: جهّزني للاجتماع بالكامل.\n\nOUTPUT:\n1. ملخص إنجازات الفترة بلغة قيمة للعميل (ROI).\n2. النقاط اللي محتاجة معالجة + إزاي أطرحها بإيجابية.\n3. فرصة upsell/cross-sell منطقية + إزاي أقدّمها طبيعي.\n4. 5 أسئلة أسألها تكشف احتياجات جديدة.\n5. الأجندة + النتيجة المثالية.\n\nQUALITY BAR: يوازن بين الصدق والعلاقة. الـ upsell مبني على احتياج حقيقي.",
+      "variables": [
+        "العميل",
+        "الخدمة",
+        "نتائج الفترة",
+        "أي مشاكل"
+      ],
+      "chatCommands": [
+        "اكتبلي رسالة تأكيد الاجتماع.",
+        "العميل زعلان، جهّزني لموقف صعب.",
+        "اعمل ملخص بعد الاجتماع."
+      ]
+    },
+    {
+      "id": "am2",
+      "code": "AM2",
+      "sectionId": "section-3",
+      "title": "إنقاذ عميل معرّض للـ Churn",
+      "template": "CONFIG: language=ar · depth=expert · format=steps\n\nROLE: أنت Retention Specialist بتنقذ العملاء قبل ما يمشوا.\n\nCONTEXT: العميل: [العميل] · علامات الخطر: [علامات الخطر، مثال: استخدام قلّ، رد بطيء] · تاريخه: [تاريخه معانا].\n\nTASK: خطة إنقاذ.\n\nOUTPUT: تشخيص السبب المحتمل + رسالة تواصل تعيد الثقة + عرض/خطوة تحتفظ بيه + متى نصعّد + إشارات إنه اتنقذ.\n\nQUALITY BAR: تعالج السبب الحقيقي مش العرض. بدون توسّل.",
+      "variables": [
+        "العميل",
+        "علامات الخطر، مثال: استخدام قلّ، رد بطيء",
+        "تاريخه معانا"
+      ],
+      "chatCommands": [
+        "اكتب الرسالة الأولى.",
+        "العميل بيقارن بمنافس أرخص، إيه الرد؟"
+      ]
+    },
+    {
+      "id": "am3",
+      "code": "AM3",
+      "sectionId": "section-3",
+      "title": "تقرير شهري للعميل",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت Account Manager بتكتب تقارير العميل بيفهمها وبتبيّن القيمة.\n\nCONTEXT: العميل: [العميل] · نتائج الشهر: [البيانات/النتائج] · الخطة الجاية: [الخطوة الجاية].\n\nTASK: اكتب تقرير شهري واضح.\n\nOUTPUT: ملخص تنفيذي (3 أسطر) + أهم النتائج بالأرقام + إيه اللي اشتغل وإيه اللي هنحسّنه + خطة الشهر الجاي.\n\nQUALITY BAR: يركّز على القيمة والنتيجة مش على المجهود. مفهوم لغير المتخصص.",
+      "variables": [
+        "العميل",
+        "البيانات/النتائج",
+        "الخطوة الجاية"
+      ],
+      "chatCommands": [
+        "خليه نقاط للواتساب.",
+        "النتائج مش كويسة الشهر ده، إزاي أعرضها بصدق؟"
+      ]
+    },
+    {
+      "id": "q1",
+      "code": "Q1",
+      "sectionId": "section-4",
+      "title": "عرض سعر مبني على القيمة",
+      "template": "CONFIG: language=ar · depth=expert · format=markdown\n\nROLE: أنت خبير تسعير بتكتب عروض بتقفل، بتركز على القيمة والـ ROI.\n\nCONTEXT: العميل: [العميل] · طلبه: [المطلوب] · نطاق العمل: [نطاق العمل] · الأسعار: [الأسعار].\n\nTASK: اكتب عرض سعر مقنع.\n\nOUTPUT: فهمنا لاحتياجه + الحل والنتيجة المتوقعة + نطاق واضح (داخل/خارج) + 3 باقات (anchor عالي · الموصى به · مبدئي) + الشروط + الخطوة الجاية.\n\nQUALITY BAR: 3 باقات عشان يختار مش يقول لأ. النطاق واضح يحميك من scope creep.",
+      "variables": [
+        "العميل",
+        "المطلوب",
+        "نطاق العمل",
+        "الأسعار"
+      ],
+      "chatCommands": [
+        "اعمل نسخة one-pager.",
+        "جدول مقارنة الباقات.",
+        "العميل قال غالي، جهّزلي رد."
+      ]
+    },
+    {
+      "id": "q2",
+      "code": "Q2",
+      "sectionId": "section-4",
+      "title": "متابعة عرض سعر (Quote Follow-up)",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت خبير مبيعات بتعمل follow-up بيحرّك القرار بدون إلحاح.\n\nCONTEXT: العميل: [العميل] · العرض: [العرض] · بقاله ساكت: [مدة الصمت].\n\nTASK: اكتب 3 رسائل متابعة متدرّجة (لطيفة → قيمة مضافة → قرار).\n\nOUTPUT: 3 رسائل + توقيت كل واحدة + متى أوقف.\n\nQUALITY BAR: كل رسالة تضيف قيمة مش بس \"أي أخبار؟\". بدون ضغط مزعج.",
+      "variables": [
+        "العميل",
+        "العرض",
+        "مدة الصمت"
+      ],
+      "chatCommands": [
+        "اكتب رسالة تخلق إحساس بالأولوية.",
+        "اعمل نسخة واتساب."
+      ]
+    },
+    {
+      "id": "r1",
+      "code": "R1",
+      "sectionId": "section-5",
+      "title": "دراسة سوق سريعة",
+      "template": "CONFIG: language=ar · depth=expert · format=markdown\n\nROLE: أنت Market Analyst بتفصل الحقيقة عن التقدير.\n\nCONTEXT: السوق: [السوق/المنتج] · المنطقة: [المنطقة] · الهدف: [الهدف].\n\nTASK: دراسة سوق منظمة.\n\nOUTPUT: حجم السوق واتجاهه + شرائح العملاء + 3–5 منافسين ونقاط قوتهم/ضعفهم + الفجوات + المخاطر + أفضل زاوية دخول وأسرع طريق لأول عميل.\n\nQUALITY BAR: ميّز الحقيقة عن التقدير. لو مفيش بيانات أكيدة قل \"تقدير\" واذكر أساسه.",
+      "variables": [
+        "السوق/المنتج",
+        "المنطقة",
+        "الهدف"
+      ],
+      "chatCommands": [
+        "عمّق في المنافسين.",
+        "حوّلها presentation.",
+        "اعمل SWOT."
+      ]
+    },
+    {
+      "id": "r2",
+      "code": "R2",
+      "sectionId": "section-5",
+      "title": "تحليل منافس بعمق (Deep Dive)",
+      "template": "CONFIG: language=ar · depth=expert · format=markdown\n\nROLE: أنت Competitive Intelligence Analyst.\n\nCONTEXT: بنحلل [المنافس] مقابل [منتجنا].\n\nTASK: تشريح كامل للمنافس.\n\nOUTPUT: نموذج أعماله + تسعيره + جمهوره + رسائله التسويقية + نقاط قوته وضعفه + فين نتفوق + رسالة positioning تميّزنا + battlecard للمبيعات.\n\nQUALITY BAR: متوازن وصادق. الفجوة القابلة للاستغلال محددة.",
+      "variables": [
+        "المنافس",
+        "منتجنا"
+      ],
+      "chatCommands": [
+        "قارن 3 منافسين مرة واحدة.",
+        "اعمل battlecard مختصر."
+      ]
+    },
+    {
+      "id": "r3",
+      "code": "R3",
+      "sectionId": "section-5",
+      "title": "تلخيص وتحليل مقابلات العملاء",
+      "whenToUse": "عملت انترفيوهات/استبيانات وعايز تطلّع منها insights.",
+      "template": "CONFIG: language=ar · depth=expert · format=markdown\n\nROLE: أنت UX Researcher بتحوّل الكلام الخام لـ insights مرتبة.\n\nCONTEXT: سؤال البحث: [سؤال البحث]. المادة:\n[الملاحظات/التفريغ]\n\nTASK: استخرج الأنماط.\n\nOUTPUT: أهم 5 themes مرتبة بالتكرار + اقتباسات داعمة + نقاط الألم الحقيقية + توصيات قابلة للتنفيذ + إيه اللي فاجأنا.\n\nQUALITY BAR: مبني على المادة مش تخمين. ميّز رأي فردي عن نمط متكرر.",
+      "variables": [
+        "سؤال البحث",
+        "الملاحظات/التفريغ"
+      ],
+      "chatCommands": [
+        "رتّب التوصيات بالأولوية.",
+        "اعمل persona من ده."
+      ]
+    },
+    {
+      "id": "p1",
+      "code": "P1",
+      "sectionId": "section-6",
+      "title": "خطة 90 يوم",
+      "template": "CONFIG: language=ar · depth=expert · format=markdown\n\nROLE: أنت استراتيجي تنفيذي بتحوّل الأهداف لخطط 90 يوم قابلة للتنفيذ.\n\nCONTEXT: الهدف: [الهدف] · الوضع الحالي: [الوضع الحالي] · الموارد المتاحة: [الموارد].\n\nTASK: خطة 90 يوم.\n\nOUTPUT: الهدف الكبير مقسّم لـ 3 milestones شهرية + أهم 3 مبادرات لكل شهر + المقاييس (KPIs) + المخاطر + أول أسبوع بالتفصيل.\n\nQUALITY BAR: واقعية بالموارد المتاحة. أولويات واضحة مش قائمة أمنيات.",
+      "variables": [
+        "الهدف",
+        "الوضع الحالي",
+        "الموارد"
+      ],
+      "chatCommands": [
+        "فصّل أول أسبوع يوم بيوم.",
+        "الموارد أقل، عدّل الخطة.",
+        "اعمل OKRs من ده."
+      ]
+    },
+    {
+      "id": "p2",
+      "code": "P2",
+      "sectionId": "section-6",
+      "title": "خطة إطلاق منتج (Go-To-Market)",
+      "template": "CONFIG: language=ar · depth=expert · format=markdown\n\nROLE: أنت GTM Strategist بخبرة إطلاقات في السوق المصري/الخليجي.\n\nCONTEXT: المنتج: [المنتج] · الجمهور: [الجمهور] · الإطلاق: [تاريخ الإطلاق] · القنوات: [القنوات].\n\nTASK: خطة إطلاق كاملة.\n\nOUTPUT: positioning ورسالة أساسية + مراحل (pre-launch / launch / post) + خطة محتوى لكل مرحلة + القنوات والتكتيكات + KPIs + أول 3 خطوات.\n\nQUALITY BAR: عملية بميزانية واقعية. تركّز على قناة أو اتنين مش عشرة.",
+      "variables": [
+        "المنتج",
+        "الجمهور",
+        "تاريخ الإطلاق",
+        "القنوات"
+      ],
+      "chatCommands": [
+        "ركّز على pre-launch.",
+        "اعمل خطة waitlist.",
+        "نسخة بميزانية صفر."
+      ]
+    },
+    {
+      "id": "p3",
+      "code": "P3",
+      "sectionId": "section-6",
+      "title": "عصف ذهني لأفكار نمو (Growth Experiments)",
+      "template": "CONFIG: language=ar · depth=expert · format=table\n\nROLE: أنت Growth Hacker بتقترح تجارب نمو مرتبة بالأثر والجهد.\n\nCONTEXT: المقياس المستهدف: [الهدف/المقياس] · المنتج: [المنتج] · القيود: [القيود].\n\nTASK: اقترح 10 تجارب نمو مختلفة (مش أفكار مكررة).\n\nOUTPUT: جدول (الفكرة · القناة · الأثر المتوقع · الجهد · ICE score) + رشّح أول 3 نبدأ بيهم وليه.\n\nQUALITY BAR: أفكار كرييف وغير تقليدية. مبنية على القيود الواقعية.",
+      "variables": [
+        "الهدف/المقياس",
+        "المنتج",
+        "القيود"
+      ],
+      "chatCommands": [
+        "عمّق في فكرة رقم [X].",
+        "أفكار مجانية بس.",
+        "10 كمان مختلفين."
+      ]
+    },
+    {
+      "id": "ds1",
+      "code": "DS1",
+      "sectionId": "section-7",
+      "title": "Creative Brief (قبل أي تصميم)",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت Art Director بتحوّل الطلب المبهم لبريف تصميم واضح.\n\nCONTEXT: المطلوب: [المطلوب، مثال: بوست/بانر/هوية] · الهدف: [الهدف] · الجمهور: [الجمهور] · البراند: [البراند].\n\nTASK: اكتب creative brief كامل.\n\nOUTPUT: الرسالة الأساسية + المزاج/الإحساس (mood) + دلالات الألوان المقترحة + نوع الخطوط + الـ hierarchy (إيه أهم عنصر) + 3 اتجاهات بصرية مختلفة + مراجع/أمثلة أوصفها.\n\nQUALITY BAR: يوجّه التصميم بدون ما يقيّد الإبداع. 3 اتجاهات مختلفين فعلًا.",
+      "variables": [
+        "المطلوب، مثال: بوست/بانر/هوية",
+        "الهدف",
+        "الجمهور",
+        "البراند"
+      ],
+      "chatCommands": [
+        "عمّق في الاتجاه رقم [X].",
+        "اقترح palette ألوان بالأكواد.",
+        "اعمل بريف لفيديو بدل صورة."
+      ]
+    },
+    {
+      "id": "ds2",
+      "code": "DS2",
+      "sectionId": "section-7",
+      "title": "برومبت توليد صورة بالـ AI (Midjourney / DALL·E)",
+      "whenToUse": "عايز تولّد صورة/كونسبت ومحتاج برومبت إنجليزي دقيق.",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت خبير في كتابة برومبتات توليد الصور بدقة احترافية.\n\nCONTEXT: عايز صورة لـ: [الوصف] · الاستخدام: [الاستخدام] · الستايل: [الستايل].\n\nTASK: اكتب 3 برومبتات إنجليزي جاهزة للصق في أداة التوليد.\n\nكل برومبت فيه: subject + composition + lighting + style + mood + color + aspect ratio + جودة.\nسلّم الـ 3 مختلفين في الزاوية + نصيحة أي واحد أنسب.\n\nQUALITY BAR: برومبتات إنجليزي دقيقة جاهزة. تفاصيل بصرية محددة مش عامة.",
+      "variables": [
+        "الوصف",
+        "الاستخدام",
+        "الستايل"
+      ],
+      "chatCommands": [
+        "خليهم أكثر minimal.",
+        "اعمل نسخة لـ Midjourney بالـ parameters.",
+        "نفس الفكرة ستايل مختلف."
+      ]
+    },
+    {
+      "id": "ds3",
+      "code": "DS3",
+      "sectionId": "section-7",
+      "title": "نقد وتحسين تصميم (Design Critique)",
+      "whenToUse": "خلّصت تصميم وعايز رأي محترف يحسّنه (ارفعه/اوصفه).",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت Senior Designer بتدي feedback بنّاء ومحدد.\n\nCONTEXT: التصميم: [وصف التصميم] · هدفه: [الهدف].\n\nTASK: انقد التصميم واقترح تحسينات.\n\nOUTPUT: إيه اللي شغال كويس + أكبر 3 مشاكل (hierarchy/تباين/مسافات/قراءة) + تحسين محدد لكل مشكلة + أولوية التغييرات.\n\nQUALITY BAR: محدد وقابل للتنفيذ، مش \"خليه أحلى\". يربط كل ملاحظة بالهدف.",
+      "variables": [
+        "وصف التصميم",
+        "الهدف"
+      ],
+      "chatCommands": [
+        "ركّز على قابلية القراءة.",
+        "التصميم للموبايل، يتغير إيه؟"
+      ]
+    },
+    {
+      "id": "v1",
+      "code": "V1",
+      "sectionId": "section-8",
+      "title": "سكريبت فيديو قصير (Reels / TikTok / Shorts)",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت scriptwriter فيديوهات قصيرة بتمسك المشاهد من أول ثانية.\n\nCONTEXT: الموضوع: [الموضوع] · المدة: [المدة] · الرسالة: [الرسالة] · الجمهور: [الجمهور].\n\nTASK: اكتب سكريبت كامل.\n\nOUTPUT: Hook (أول 3 ثواني — 3 خيارات) + الجسم (نقطة بنقطة مع توقيت تقريبي) + CTA + اقتراحات لقطات/نصوص على الشاشة (B-roll & captions).\n\nQUALITY BAR: أول 3 ثواني توقف الـ scroll. إيقاع سريع. لغة منطوقة مش مكتوبة.",
+      "variables": [
+        "الموضوع",
+        "المدة",
+        "الرسالة",
+        "الجمهور"
+      ],
+      "chatCommands": [
+        "اعمل 5 hooks تانية.",
+        "خليه 60 ثانية بدل 30.",
+        "نسخة أكثر كوميدي."
+      ]
+    },
+    {
+      "id": "v2",
+      "code": "V2",
+      "sectionId": "section-8",
+      "title": "Storyboard / خطة لقطات",
+      "template": "CONFIG: language=ar · depth=pro · format=table\n\nROLE: أنت مخرج بتحوّل السكريبت لخطة لقطات عملية.\n\nCONTEXT: السكريبت/الفكرة: [السكريبت/الفكرة] · نوع الفيديو: [النوع].\n\nTASK: اعمل storyboard.\n\nOUTPUT: جدول (اللقطة · الوصف · نوع الكادر · المدة · الصوت/الموسيقى · النص على الشاشة).\n\nQUALITY BAR: عملي للتصوير والمونتاج مباشرة. تنويع في الكادرات.",
+      "variables": [
+        "السكريبت/الفكرة",
+        "النوع"
+      ],
+      "chatCommands": [
+        "اقترح موسيقى/mood لكل جزء.",
+        "خليه أبسط للتصوير بموبايل."
+      ]
+    },
+    {
+      "id": "v3",
+      "code": "V3",
+      "sectionId": "section-8",
+      "title": "عناوين وأوصاف يوتيوب (SEO)",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت YouTube strategist بتكتب عناوين وأوصاف بترفع المشاهدات.\n\nCONTEXT: الفيديو عن: [موضوع الفيديو] · الكلمة المفتاحية: [الكلمة المفتاحية].\n\nTASK: اكتب حزمة النشر.\n\nOUTPUT: 8 عناوين (فضول/رقم/فائدة/كيف) + وصف SEO فيه الكلمة + timestamps مقترحة + 10 tags + فكرة thumbnail (النص + العنصر البصري).\n\nQUALITY BAR: عناوين تجذب بدون clickbait كذّاب. thumbnail واضحة الرسالة.",
+      "variables": [
+        "موضوع الفيديو",
+        "الكلمة المفتاحية"
+      ],
+      "chatCommands": [
+        "8 عناوين كمان.",
+        "ركّز على الفضول.",
+        "اكتب أول تعليق مثبّت."
+      ]
+    },
+    {
+      "id": "sl1",
+      "code": "SL1",
+      "sectionId": "section-9",
+      "title": "إيميل/رسالة باردة",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت خبير cold outreach للسوق المصري/الخليجي.\n\nCONTEXT: المستهدف: [العميل المستهدف] في [القطاع] · مشكلته: [مشكلته] · بنقدّم: [خدمتنا] · دليل: [نتيجة رقمية].\n\nTASK: اكتب رسالة باردة قصيرة (أقل من 120 كلمة) تفتح محادثة.\n\nOUTPUT: نص الرسالة + 3 subject/opener + فكرة follow-up.\n\nQUALITY BAR: تفتح بمشكلته، CTA واحد بسيط (سؤال)، طبيعية مش قالب.",
+      "variables": [
+        "العميل المستهدف",
+        "القطاع",
+        "مشكلته",
+        "خدمتنا",
+        "نتيجة رقمية"
+      ],
+      "chatCommands": [
+        "اعمل follow-up رقم 2.",
+        "نسخة LinkedIn DM.",
+        "نسخة إنجليزي للخليج."
+      ]
+    },
+    {
+      "id": "sl2",
+      "code": "SL2",
+      "sectionId": "section-9",
+      "title": "التعامل مع الاعتراضات (Objection Handling)",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت Sales Coach بترد على الاعتراضات بذكاء بدون جدال.\n\nCONTEXT: العميل قال: \"[الاعتراض]\" · المنتج: [المنتج] · سياقه: [سياق العميل].\n\nTASK: جهّزلي رد.\n\nOUTPUT: السبب الحقيقي وراء الاعتراض + 3 طرق مختلفة للرد (تعاطف / إعادة تأطير / دليل) + سؤال أرجع بيه القيادة للمحادثة.\n\nQUALITY BAR: يفهم قبل ما يرد. بدون دفاعية أو ضغط.",
+      "variables": [
+        "الاعتراض",
+        "المنتج",
+        "سياق العميل"
+      ],
+      "chatCommands": [
+        "الاعتراض \"غالي\" تحديدًا.",
+        "اعمل جدول لأشهر 8 اعتراضات وردودها."
+      ]
+    },
+    {
+      "id": "sl3",
+      "code": "SL3",
+      "sectionId": "section-9",
+      "title": "تجهيز مكالمة Discovery",
+      "template": "CONFIG: language=ar · depth=pro · format=steps\n\nROLE: أنت Sales Coach بمنهجية SPIN.\n\nCONTEXT: العميل: [العميل] · نشاطه: [نشاطه] · معلوماتي: [اللي تعرفه] · بنعرض: [خدمتنا].\n\nTASK: جهّزني للمكالمة.\n\nOUTPUT: 3 فرضيات عن مشاكله + 8 أسئلة discovery مرتبة + أقوى اعتراضين وردهم + الهدف المثالي والخطوة الجاية.\n\nQUALITY BAR: أسئلة تفتح كلام. عملي ومختصر.",
+      "variables": [
+        "العميل",
+        "نشاطه",
+        "اللي تعرفه",
+        "خدمتنا"
+      ],
+      "chatCommands": [
+        "اكتب افتتاحية المكالمة.",
+        "أسئلة عن الميزانية وصاحب القرار."
+      ]
+    },
+    {
+      "id": "dev1",
+      "code": "DEV1",
+      "sectionId": "section-10",
+      "title": "من فكرة لمواصفات (Spec)",
+      "template": "CONFIG: language=ar · depth=expert · format=markdown\n\nROLE: أنت Senior Engineer بتحوّل الأفكار لمواصفات قبل الكود.\n\nCONTEXT: الفيتشر: [الفيتشر] · المستخدم: [المستخدم] · المشكلة: [المشكلة] · الـ stack: [الـ stack].\n\nTASK: اكتب spec كامل.\n\nOUTPUT: المشكلة والهدف و non-goals + user stories + acceptance criteria + الـ data model/API + حالات الحافة + tasks مرتبة.\n\nQUALITY BAR: قابل للبناء مباشرة. non-goals واضحة للـ scope.",
+      "variables": [
+        "الفيتشر",
+        "المستخدم",
+        "المشكلة",
+        "الـ stack"
+      ],
+      "chatCommands": [
+        "حوّل الـ tasks لـ tickets.",
+        "اقترح schema.",
+        "ابدأ كود أول task."
+      ]
+    },
+    {
+      "id": "dev2",
+      "code": "DEV2",
+      "sectionId": "section-10",
+      "title": "مراجعة كود / Debugging",
+      "template": "CONFIG: language=ar · depth=expert · format=markdown\n\nROLE: أنت Code Reviewer بتلاقي السبب الجذري بسرعة.\n\nCONTEXT: المتوقع: [المتوقع] · بيحصل: [اللي بيحصل] · الكود:\n[الكود]\n\nTASK: لاقي السبب واقترح الحل.\n\nOUTPUT: السبب الجذري + الإصلاح (كود) + مشاكل أمان/أداء لاحظتها + test يمنع التكرار.\n\nQUALITY BAR: السبب مش العرض. الكود جاهز.",
+      "variables": [
+        "المتوقع",
+        "اللي بيحصل",
+        "الكود"
+      ],
+      "chatCommands": [
+        "اشرح ليه ده السبب.",
+        "اكتب unit test.",
+        "راجع الأمان."
+      ]
+    },
+    {
+      "id": "dev3",
+      "code": "DEV3",
+      "sectionId": "section-10",
+      "title": "شرح/توثيق كود (Docs)",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت بتكتب توثيق تقني واضح.\n\nCONTEXT: الكود/النظام: [الكود/النظام] · لمين: [الجمهور، مثال: مطور جديد/غير تقني].\n\nTASK: اشرح ووثّق.\n\nOUTPUT: نظرة عامة (ماذا ولماذا) + كيف يعمل خطوة بخطوة + أمثلة استخدام + gotchas/تحذيرات.\n\nQUALITY BAR: واضح لمستوى الجمهور المحدد. أمثلة عملية.",
+      "variables": [
+        "الكود/النظام",
+        "الجمهور، مثال: مطور جديد/غير تقني"
+      ],
+      "chatCommands": [
+        "اعمل README.",
+        "بسّطه لغير تقني.",
+        "ضيف diagram (وصف نصي)."
+      ]
+    },
+    {
+      "id": "hr1",
+      "code": "HR1",
+      "sectionId": "section-11",
+      "title": "إعلان وظيفة (JD) جذّاب",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت HR بتكتب إعلانات وظائف بتجذب أحسن المواهب مش بس بتطلب شروط.\n\nCONTEXT: الوظيفة: [المسمى] · المهام: [المهام] · المتطلبات: [المتطلبات] · عن الشركة: [عن الشركة].\n\nTASK: اكتب JD جذّاب.\n\nOUTPUT: عن الشركة + الدور والأثر + المسؤوليات + المتطلبات (must / nice) + ليه تنضم لينا + خطوة التقديم.\n\nQUALITY BAR: يبيع الفرصة. واقعي وواضح. بدون كليشيهات \"بيئة عمل ديناميكية\".",
+      "variables": [
+        "المسمى",
+        "المهام",
+        "المتطلبات",
+        "عن الشركة"
+      ],
+      "chatCommands": [
+        "نسخة LinkedIn أقصر.",
+        "أسئلة فلترة للمتقدمين.",
+        "نسخة إنجليزي."
+      ]
+    },
+    {
+      "id": "hr2",
+      "code": "HR2",
+      "sectionId": "section-11",
+      "title": "أسئلة مقابلة + Scorecard",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت Interviewer بتصمم أسئلة تكشف الكفاءة الحقيقية.\n\nCONTEXT: الوظيفة: [الوظيفة] · المهارات المطلوبة: [أهم المهارات].\n\nTASK: جهّز مقابلة منظمة.\n\nOUTPUT: 8 أسئلة (سلوكية + تقنية + موقفية) + الإجابة القوية vs الضعيفة لكل سؤال + scorecard تقييم من 5.\n\nQUALITY BAR: أسئلة تكشف الأداء الفعلي مش الحفظ.",
+      "variables": [
+        "الوظيفة",
+        "أهم المهارات"
+      ],
+      "chatCommands": [
+        "ضيف task عملي.",
+        "ركّز على culture fit."
+      ]
+    },
+    {
+      "id": "hr3",
+      "code": "HR3",
+      "sectionId": "section-11",
+      "title": "خطة onboarding لموظف جديد",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت HR بتصمم onboarding يخلّي الموظف منتج بسرعة.\n\nCONTEXT: الوظيفة: [الوظيفة] · الأدوات: [الأدوات/الأنظمة] · أهداف أول شهر: [أهداف أول شهر].\n\nTASK: خطة onboarding 30 يوم.\n\nOUTPUT: أول يوم + أول أسبوع (checklist) + 30/60/90 أهداف + مع مين يتقابل + متى نقيّم.\n\nQUALITY BAR: تدرّج منطقي. أهداف واضحة لكل مرحلة.",
+      "variables": [
+        "الوظيفة",
+        "الأدوات/الأنظمة",
+        "أهداف أول شهر"
+      ],
+      "chatCommands": [
+        "اعمل نسخة للـ remote.",
+        "checklist يوم أول بس."
+      ]
+    },
+    {
+      "id": "mk1",
+      "code": "MK1",
+      "sectionId": "section-12",
+      "title": "خطة حملة تسويقية",
+      "template": "CONFIG: language=ar · depth=expert · format=markdown\n\nROLE: أنت Marketing Director بخبرة في السوق المصري/الخليجي.\n\nCONTEXT: المنتج: [المنتج] · الهدف: [الهدف] · الجمهور: [الجمهور] · الميزانية: [الميزانية] · القنوات: [القنوات].\n\nTASK: خطة حملة كاملة.\n\nOUTPUT: الرسالة و positioning + توزيع الميزانية (جدول) + كاليندر محتوى أسبوعي + 3 زوايا إبداعية لكل قناة + KPIs + أول 3 خطوات.\n\nQUALITY BAR: أرقام واقعية. تركيز مش تشتّت.",
+      "variables": [
+        "المنتج",
+        "الهدف",
+        "الجمهور",
+        "الميزانية",
+        "القنوات"
+      ],
+      "chatCommands": [
+        "فصّل أول أسبوع.",
+        "ركّز على LinkedIn.",
+        "forecast بالسيناريوهات."
+      ]
+    },
+    {
+      "id": "mk2",
+      "code": "MK2",
+      "sectionId": "section-12",
+      "title": "كاليندر محتوى شهري",
+      "template": "CONFIG: language=ar · depth=pro · format=table\n\nROLE: أنت Content Strategist بتبني كاليندر متوازن.\n\nCONTEXT: المنصة: [المنصة] · الأهداف: [الأهداف] · المواضيع: [المواضيع] · العدد: [عدد البوستات].\n\nTASK: كاليندر محتوى شهر.\n\nOUTPUT: جدول (اليوم · الموضوع · نوع المحتوى · الهوك · CTA) + توزيع متوازن (تعليمي/قصص/ترويج/تفاعل) + فكرة لكل بوست.\n\nQUALITY BAR: تنوّع مش تكرار. كل بوست له هدف.",
+      "variables": [
+        "المنصة",
+        "الأهداف",
+        "المواضيع",
+        "عدد البوستات"
+      ],
+      "chatCommands": [
+        "عمّق بوست يوم [X].",
+        "ضيف أفكار reels.",
+        "خليه أسبوعين بس."
+      ]
+    },
+    {
+      "id": "mk3",
+      "code": "MK3",
+      "sectionId": "section-12",
+      "title": "بوست + كاروسيل لينكدإن",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت LinkedIn creator بتكتب بوستات بتوقف الـ scroll وبتبني authority.\n\nCONTEXT: الموضوع: [الموضوع] · الرسالة: [الرسالة] · الجمهور: [الجمهور].\n\nTASK: اكتب بوست + outline كاروسيل.\n\nOUTPUT: 3 هوكس + نص البوست (بصوت بشري، أسطر قصيرة) + CTA + كاروسيل 7 سلايدات (عنوان كل سلايد + نقطة).\n\nQUALITY BAR: بشري مش AI. قيمة حقيقية. أول سطر يخلي القارئ يضغط \"المزيد\".",
+      "variables": [
+        "الموضوع",
+        "الرسالة",
+        "الجمهور"
+      ],
+      "chatCommands": [
+        "طبّق عليه نظام الكونتنت الهيومن (HC2).",
+        "اعمل نسخة أقصر.",
+        "3 هوكس تانية."
+      ]
+    },
+    {
+      "id": "cs1",
+      "code": "CS1",
+      "sectionId": "section-13",
+      "title": "رد على عميل غاضب (De-escalation)",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت CS خبير في تهدئة العملاء وتحويلهم لمخلصين.\n\nCONTEXT: المشكلة: [المشكلة] · القناة: [القناة] · اللي نقدمه: [اللي نقدر نعمله].\n\nTASK: رد يعترف، يهدّي، ويحل.\n\nOUTPUT: الرد + الخطوة الجاية + متى نصعّد للمدير.\n\nQUALITY BAR: يعترف بمشاعره بدون وعود مستحيلة. حل ملموس.",
+      "variables": [
+        "المشكلة",
+        "القناة",
+        "اللي نقدر نعمله"
+      ],
+      "chatCommands": [
+        "أقصر وأدفأ.",
+        "لو عايز استرداد فلوس.",
+        "رسالة متابعة بعد الحل."
+      ]
+    },
+    {
+      "id": "cs2",
+      "code": "CS2",
+      "sectionId": "section-13",
+      "title": "رسالة onboarding لعميل جديد",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت Onboarding Specialist بتوصّل العميل لأول قيمة بسرعة.\n\nCONTEXT: الخدمة: [الخدمة] · أول خطوة: [أول خطوة للعميل] · الدعم عبر: [الدعم].\n\nTASK: رسالة ترحيب + خطة أول أسبوع.\n\nOUTPUT: ترحيب + checklist أول 3 خطوات + متى نتابع.\n\nQUALITY BAR: قيمة سريعة مش سرد مميزات. ودّية وواضحة.",
+      "variables": [
+        "الخدمة",
+        "أول خطوة للعميل",
+        "الدعم"
+      ],
+      "chatCommands": [
+        "نسخة واتساب.",
+        "سلسلة 3 رسائل على 7 أيام."
+      ]
+    },
+    {
+      "id": "au1",
+      "code": "AU1",
+      "sectionId": "section-14",
+      "title": "تصميم workflow على n8n",
+      "template": "CONFIG: language=ar · depth=expert · format=steps\n\nROLE: أنت Automation Architect خبير n8n بتصمم workflows موثوقة.\n\nCONTEXT: العملية: [العملية] · الـ trigger: [الـ trigger] · الأنظمة: [الأنظمة] · الناتج: [الناتج].\n\nTASK: صمّم الـ workflow كامل.\n\nOUTPUT: الـ nodes بالترتيب + data mapping + الـ branches/conditions + error handling + credentials + 3 حالات اختبار.\n\nQUALITY BAR: production-ready. اذكر أي مخاطرة (rate limits/duplicates).",
+      "variables": [
+        "العملية",
+        "الـ trigger",
+        "الأنظمة",
+        "الناتج"
+      ],
+      "chatCommands": [
+        "حوّله n8n JSON.",
+        "ضيف إشعار Slack لو فشل.",
+        "نسخة Make."
+      ]
+    },
+    {
+      "id": "au2",
+      "code": "AU2",
+      "sectionId": "section-14",
+      "title": "مواصفات AI Agent",
+      "template": "CONFIG: language=ar · depth=expert · format=markdown\n\nROLE: أنت AI Agent Designer بتبني agents موثوقة بحدود واضحة.\n\nCONTEXT: المهمة: [مهمة الـ agent] · المستخدم: [المستخدم] · الأدوات: [الأدوات] · ممنوع يعمل: [الحدود].\n\nTASK: صمّم مواصفات الـ agent.\n\nOUTPUT: system prompt جاهز + قائمة tools ومتى يستخدم كل واحد + guardrails ومتى يصعّد لإنسان + edge cases + مقاييس نجاح.\n\nQUALITY BAR: محدد المهمة. tool-calling واضح.",
+      "variables": [
+        "مهمة الـ agent",
+        "المستخدم",
+        "الأدوات",
+        "الحدود"
+      ],
+      "chatCommands": [
+        "اكتب الـ system prompt نهائي.",
+        "ضيف RAG tool.",
+        "إزاي أمنع الهلوسة؟"
+      ]
+    },
+    {
+      "id": "mg1",
+      "code": "MG1",
+      "sectionId": "section-15",
+      "title": "قرار استراتيجي (Debate)",
+      "template": "CONFIG: language=ar · depth=expert · format=markdown\n\nROLE: أنت مستشار استراتيجي بتعرض الجهتين بتوازن قبل التوصية.\n\nCONTEXT: القرار: [القرار] · الخيارات: [الخيارات] · معايير التقييم: [المعايير].\n\nTASK: حلّل بأسلوب debate ثم وصّي.\n\nOUTPUT: حجج مع/ضد كل خيار + Recommendation Matrix + التوصية والسبب + أكبر مخاطرة وكيف نخفّفها.\n\nQUALITY BAR: متوازن فعلًا. التوصية واضحة مش \"يعتمد\".",
+      "variables": [
+        "القرار",
+        "الخيارات",
+        "المعايير"
+      ],
+      "chatCommands": [
+        "لو الأولوية السرعة تتغير؟",
+        "نسخة أقصر للـ board.",
+        "ضيف خيار هجين."
+      ]
+    },
+    {
+      "id": "mg2",
+      "code": "MG2",
+      "sectionId": "section-15",
+      "title": "تلخيص اجتماع لأكشنز",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت Chief of Staff بتحوّل الكلام لقرارات ومسؤوليات.\n\nCONTEXT: نوتس الاجتماع:\n[نوتس الاجتماع]\n\nTASK: لخّص واستخرج الأكشنز.\n\nOUTPUT: القرارات + جدول أكشنز (المهمة/المسؤول/الموعد) + النقاط المعلّقة + المخاطر.\n\nQUALITY BAR: كل أكشن له مسؤول وموعد. المسؤول الغامض علّمه [؟].",
+      "variables": [
+        "نوتس الاجتماع",
+        "؟"
+      ],
+      "chatCommands": [
+        "حوّله رسالة واتساب للفريق.",
+        "follow-up email.",
+        "رتّب بالأولوية."
+      ]
+    },
+    {
+      "id": "mg3",
+      "code": "MG3",
+      "sectionId": "section-15",
+      "title": "عرض تسعير/باقات (Pricing)",
+      "template": "CONFIG: language=ar · depth=expert · format=markdown\n\nROLE: أنت خبير تسعير value-based.\n\nCONTEXT: المنتج: [المنتج/الخدمة] · تكلفتنا: [التكلفة] · الجمهور: [الجمهور] · المنافسون: [المنافسين].\n\nTASK: صمّم استراتيجية تسعير وباقات.\n\nOUTPUT: value metric المقترح + 3 باقات (اسم/سعر/مميزات/لمين) + الـ anchor والموصى به + مبررات نفسية للتسعير + مخاطر.\n\nQUALITY BAR: مبني على القيمة مش التكلفة+هامش بس. 3 باقات تدفع للاختيار.",
+      "variables": [
+        "المنتج/الخدمة",
+        "التكلفة",
+        "الجمهور",
+        "المنافسين"
+      ],
+      "chatCommands": [
+        "اعمل نموذج اشتراك شهري/سنوي.",
+        "add-ons مقترحة.",
+        "قارن بالمنافسين."
+      ]
+    },
+    {
+      "id": "u1",
+      "code": "U1",
+      "sectionId": "section-16",
+      "title": "أي مهمة (الهيكل الشامل)",
+      "whenToUse": "لو مفيش برومبت جاهز للي عايزه.",
+      "template": "CONFIG: language=ar · depth=[quick/pro/expert] · format=[markdown/table/steps]\n\nROLE: أنت [حدد الدور المناسب للمهمة].\n\nCONTEXT: [الشركة/الموقف/البيانات المتاحة] · الجمهور: [مين هيستخدم الناتج].\n\nTASK: [المطلوب في جملة واضحة].\n\nCONSTRAINTS: [قيود: وقت/ميزانية/نبرة].\n\nOUTPUT: سلّم [الشكل] منظم وجاهز للتنفيذ.\n\nQUALITY BAR: عملي بدون حشو. لو ناقصك معلومة جوهرية، اسألني 3 أسئلة الأول.",
+      "variables": [
+        "quick/pro/expert",
+        "markdown/table/steps",
+        "حدد الدور المناسب للمهمة",
+        "الشركة/الموقف/البيانات المتاحة",
+        "مين هيستخدم الناتج",
+        "المطلوب في جملة واضحة",
+        "قيود: وقت/ميزانية/نبرة",
+        "الشكل"
+      ],
+      "chatCommands": [
+        "عمّقها.",
+        "اختصرها.",
+        "اعمل 3 نسخ.",
+        "حوّلها JSON.",
+        "قيّمها من 100 وحسّنها."
+      ]
+    },
+    {
+      "id": "u2",
+      "code": "U2",
+      "sectionId": "section-16",
+      "title": "لخّص وبسّط أي حاجة",
+      "template": "CONFIG: language=ar · depth=pro · format=markdown\n\nROLE: أنت بتلخّص وتبسّط بدون ما تفقد الجوهر.\n\nCONTEXT: المحتوى: [النص/المستند] · التلخيص لـ: [لمين].\n\nTASK: لخّص وبسّط.\n\nOUTPUT: ملخص 3 أسطر + أهم النقاط + إيه اللي يهمني أعمله (action) + سؤال لو فيه غموض.\n\nQUALITY BAR: مبسّط لمستوى الجمهور. بدون حشو.",
+      "variables": [
+        "النص/المستند",
+        "لمين"
+      ],
+      "chatCommands": [
+        "أقصر.",
+        "اشرح نقطة [X] أكتر.",
+        "اعمله نقاط للواتساب."
+      ]
+    }
+  ],
+  "generatedAt": "2026-07-28T10:38:25.231Z"
+}
