@@ -34,18 +34,18 @@ export function SearchBar({
   return (
     <div className="relative w-full max-w-2xl">
       <div className="relative">
-        <Search className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
+        <Search className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-content-subtle" />
         <Input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="دوّر في كل البرومبتات… (العنوان، الكود، الاستخدام)"
-          className="h-12 rounded-xl pe-10 ps-10 text-base"
+          className="h-14 rounded-2xl pe-12 ps-12 text-base shadow-brand"
         />
         {query && (
           <button
             onClick={() => setQuery("")}
             aria-label="مسح البحث"
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200"
+            className="absolute left-4 top-1/2 -translate-y-1/2 rounded-md p-0.5 text-content-subtle transition-colors hover:text-content"
           >
             <X className="h-4 w-4" />
           </button>
@@ -53,9 +53,9 @@ export function SearchBar({
       </div>
 
       {query.trim() && (
-        <Card className="absolute z-20 mt-2 max-h-96 w-full overflow-y-auto p-2">
+        <Card className="absolute z-30 mt-2 max-h-96 w-full overflow-y-auto p-2 text-start shadow-brand-lg">
           {results.length === 0 ? (
-            <p className="p-4 text-center text-sm text-zinc-500 dark:text-zinc-400">
+            <p className="p-4 text-center text-sm text-content-muted">
               مفيش نتائج لـ «{query}»
             </p>
           ) : (
@@ -64,19 +64,21 @@ export function SearchBar({
                 <li key={p.id}>
                   <Link
                     href={`/prompt/${p.id}`}
-                    className="flex items-center justify-between gap-3 rounded-lg px-3 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                    className="flex items-center justify-between gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-brand-50 dark:hover:bg-brand-900/50"
                   >
-                    <span className="flex flex-col">
-                      <span className="text-sm font-medium">{p.title}</span>
+                    <span className="flex min-w-0 flex-col">
+                      <span className="truncate text-sm font-semibold text-content">
+                        {p.title}
+                      </span>
                       {p.whenToUse && (
-                        <span className="line-clamp-1 text-xs text-zinc-500 dark:text-zinc-400">
+                        <span className="line-clamp-1 text-xs text-content-muted">
                           {p.whenToUse}
                         </span>
                       )}
                     </span>
-                    <span className="flex shrink-0 items-center gap-2 text-xs text-zinc-400">
+                    <span className="flex shrink-0 items-center gap-2 text-xs text-content-subtle">
                       <span>{sectionById.get(p.sectionId)?.emoji}</span>
-                      <span className="rounded-md bg-zinc-100 px-1.5 py-0.5 font-mono dark:bg-zinc-800">
+                      <span className="rounded-md bg-surface-sunken px-1.5 py-0.5 font-latin font-semibold">
                         {p.code}
                       </span>
                     </span>

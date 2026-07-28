@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BackButton } from "@/components/BackButton";
 import { PromptWorkspace } from "@/components/prompt/PromptWorkspace";
@@ -5,6 +6,17 @@ import { getAllPrompts, getPrompt, getSection } from "@/lib/library";
 
 export function generateStaticParams() {
   return getAllPrompts().map((prompt) => ({ id: prompt.id }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const prompt = getPrompt(id);
+  if (!prompt) return { title: "برومبت" };
+  return { title: `${prompt.code} — ${prompt.title}`, description: prompt.whenToUse };
 }
 
 export default async function PromptPage({
