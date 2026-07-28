@@ -193,6 +193,49 @@ function parse(markdown) {
   return { sections, prompts };
 }
 
+// The guide fields render as plain text, so markdown markers survive to the
+// screen as literal characters. Fail the build instead of shipping "**كده**".
+function assertGuideTextIsPlain(prompts) {
+  const problems = [];
+  for (const p of prompts) {
+    const fields = [
+      ["بيعمل إيه", p.whatItDoes ? [p.whatItDoes] : []],
+      ["إزاي تستخدمه", p.howToUse],
+      ["نصايح", p.tips],
+      ["أمثلة", Object.values(p.examples)],
+    ];
+    for (const [label, values] of fields) {
+      for (const value of values) {
+        if (/\*\*|\\n|`/.test(value)) {
+          problems.push(`  ${p.code} (${label}): ${value}`);
+        }
+      }
+    }
+  }
+  if (problems.length > 0) {
+    throw new Error(
+      `Markdown markers found in plain-text guide fields — they would render literally:\n${problems.join(
+        "\n"
+      )}`
+    );
+  }
+}
+
+// An example keyed to a name no longer in the template silently never shows up.
+function assertExamplesMatchVariables(prompts) {
+  const problems = [];
+  for (const p of prompts) {
+    for (const name of Object.keys(p.examples)) {
+      if (!p.variables.includes(name)) {
+        problems.push(`  ${p.code}: example "${name}" is not a variable in the template`);
+      }
+    }
+  }
+  if (problems.length > 0) {
+    throw new Error(`Orphaned field examples:\n${problems.join("\n")}`);
+  }
+}
+
 function main() {
   const markdown = readFileSync(SOURCE_PATH, "utf-8");
   const { sections, prompts } = parse(markdown);
@@ -202,6 +245,9 @@ function main() {
       `Parsed 0 sections or 0 prompts from ${SOURCE_PATH} — check the markdown format.`
     );
   }
+
+  assertGuideTextIsPlain(prompts);
+  assertExamplesMatchVariables(prompts);
 
   const library = { sections, prompts, generatedAt: new Date().toISOString() };
 
