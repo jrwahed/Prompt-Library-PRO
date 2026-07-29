@@ -221,18 +221,30 @@ function assertGuideTextIsPlain(prompts) {
   }
 }
 
-// An example keyed to a name no longer in the template silently never shows up.
+// Examples and variables have to line up in both directions. An example keyed
+// to a name that is not in the template silently never shows up; a variable
+// with no example is usually a stray `[bracket]` written inside prose, which
+// turns into a phantom input field on the prompt page.
 function assertExamplesMatchVariables(prompts) {
   const problems = [];
   for (const p of prompts) {
+    const documented = Object.keys(p.examples).length > 0;
     for (const name of Object.keys(p.examples)) {
       if (!p.variables.includes(name)) {
         problems.push(`  ${p.code}: example "${name}" is not a variable in the template`);
       }
     }
+    if (!documented) continue;
+    for (const name of p.variables) {
+      if (!(name in p.examples)) {
+        problems.push(
+          `  ${p.code}: variable "${name}" has no example — is it a stray [bracket] in prose?`
+        );
+      }
+    }
   }
   if (problems.length > 0) {
-    throw new Error(`Orphaned field examples:\n${problems.join("\n")}`);
+    throw new Error(`Field examples and template variables disagree:\n${problems.join("\n")}`);
   }
 }
 
