@@ -5,7 +5,6 @@ import { Check, Copy, Heart, Sparkles, Wand2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { PromptGuide } from "@/components/prompt/PromptGuide";
 import { fillTemplate } from "@/lib/library";
 import {
@@ -103,9 +102,7 @@ export function PromptWorkspace({
     <div className="flex flex-col gap-8">
       <div className="flex flex-wrap items-start justify-between gap-4 border-b border-hairline pb-8">
         <div className="flex flex-col items-start gap-2.5">
-          <Badge variant="secondary" className="font-latin tracking-wide">
-            {prompt.code}
-          </Badge>
+          <span className="eyebrow">{prompt.code}</span>
           <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
             {prompt.title}
           </h1>

@@ -30,29 +30,25 @@ export default async function SectionPage({
   const prompts = getPromptsBySection(section.id);
 
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-8 px-6 py-10">
-      <BackButton href="/" label="رجوع للأقسام" />
+    <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-6">
+      <div className="pt-8">
+        <BackButton href="/" label="كل الأقسام" />
+      </div>
 
-      <div className="flex flex-col gap-4 border-b border-hairline pb-8">
-        <div className="flex items-center gap-4">
-          <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-3xl dark:bg-brand-900/60">
-            {section.emoji}
-          </span>
-          <div className="flex flex-col gap-1">
-            <span className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-content-subtle">
-              Section {section.number}
-            </span>
-            <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
-              {section.name}
-            </h1>
-          </div>
-        </div>
-        <p className="text-sm text-content-muted">
-          {prompts.length} برومبت جاهز في القسم ده.
+      <div className="border-b border-hairline py-10">
+        <p className="eyebrow">
+          Section {String(section.number).padStart(2, "0")}
+        </p>
+        <h1 className="mt-4 flex items-center gap-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
+          <span className="text-2xl leading-none">{section.emoji}</span>
+          {section.name}
+        </h1>
+        <p className="mt-3 font-latin text-sm text-content-subtle">
+          {prompts.length} برومبت
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 py-10 sm:grid-cols-2 lg:grid-cols-3">
         {prompts.map((prompt) => (
           <PromptCard key={prompt.id} prompt={prompt} />
         ))}

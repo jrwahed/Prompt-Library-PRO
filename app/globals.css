@@ -4,7 +4,10 @@
 
 /* ---------------------------------------------------------------------------
    Brand Shift — design tokens
-   Primary purple sampled from the Brand Shift logo (#2B1247).
+
+   The purple is an accent, not a wash. Surfaces stay near-neutral with only a
+   whisper of the brand hue in them, so the colour reads as a deliberate mark
+   (logo, section rules, hover, focus) instead of tinting the whole page.
    --------------------------------------------------------------------------- */
 @theme {
   --color-brand-50: #f5f2fb;
@@ -22,33 +25,33 @@
   --font-sans: var(--font-tajawal), "Segoe UI", Tahoma, Arial, sans-serif;
   --font-display: var(--font-poppins), var(--font-tajawal), "Segoe UI", sans-serif;
 
-  --radius-card: 1.125rem;
+  /* Tighter than the usual pill radius — reads as considered rather than soft. */
+  --radius-card: 0.625rem;
 
-  --shadow-brand: 0 1px 2px rgb(26 10 44 / 0.06), 0 8px 24px -12px rgb(26 10 44 / 0.18);
-  --shadow-brand-lg: 0 2px 4px rgb(26 10 44 / 0.08), 0 24px 48px -20px rgb(26 10 44 / 0.35);
+  /* Elevation is for things that genuinely float. Everything else uses a rule. */
+  --shadow-pop: 0 1px 2px rgb(20 18 24 / 0.05), 0 12px 32px -12px rgb(20 18 24 / 0.22);
 }
 
-/* Semantic surfaces — flipped by the .dark class on <html>. */
 :root {
-  --surface: #faf8fd;
+  --surface: #faf9fa;
   --surface-raised: #ffffff;
-  --surface-sunken: #f3effa;
-  --hairline: #e7e0f3;
-  --hairline-strong: #d3c7e8;
-  --content: #1a0a2c;
-  --content-muted: #5c4b76;
-  --content-subtle: #8878a3;
+  --surface-sunken: #f3f1f4;
+  --hairline: #e5e2e8;
+  --hairline-strong: #cfcad5;
+  --content: #1a181d;
+  --content-muted: #5d5866;
+  --content-subtle: #8b8595;
 }
 
 .dark {
-  --surface: #140a22;
-  --surface-raised: #1e1033;
-  --surface-sunken: #0e0619;
-  --hairline: #2c1b45;
-  --hairline-strong: #40295f;
-  --content: #f4f1fa;
-  --content-muted: #b9aecd;
-  --content-subtle: #8878a3;
+  --surface: #111015;
+  --surface-raised: #1a181f;
+  --surface-sunken: #0b0a0e;
+  --hairline: #262330;
+  --hairline-strong: #38343f;
+  --content: #f2f0f5;
+  --content-muted: #a39ead;
+  --content-subtle: #74707d;
 }
 
 @theme inline {
@@ -78,14 +81,18 @@ body {
   color: #fff;
 }
 
-/* Latin runs inside Arabic copy (codes, CONFIG lines) get the display face. */
+/* Latin runs inside Arabic copy — codes, numerals, CONFIG lines. */
 .font-latin {
   font-family: var(--font-display);
+  font-feature-settings: "tnum" 1;
 }
 
-/* Ambient brand wash used behind the hero. */
-.brand-aurora {
-  background-image:
-    radial-gradient(60rem 30rem at 15% -10%, color-mix(in oklab, var(--color-brand-500) 22%, transparent), transparent 70%),
-    radial-gradient(45rem 25rem at 90% 0%, color-mix(in oklab, var(--color-brand-300) 18%, transparent), transparent 70%);
+/* Eyebrow labels: small, tracked out, quiet. */
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--content-subtle);
 }

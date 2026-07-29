@@ -7,69 +7,49 @@ export default function HomePage() {
   const sections = getSections();
   const prompts = getAllPrompts();
 
-  const stats = [
-    { value: sections.length, label: "قسم" },
-    { value: prompts.length, label: "برومبت جاهز" },
-  ];
-
   return (
-    <main className="flex w-full flex-1 flex-col items-center">
-      {/* Hero */}
-      <section className="brand-aurora relative w-full border-b border-hairline">
-        <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-8 px-6 py-16 text-center sm:py-20">
-          <span className="inline-flex items-center gap-2 rounded-full border border-hairline bg-surface-raised/70 px-4 py-1.5 text-xs font-semibold text-content-muted backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
-            أداة داخلية · Brand Shift Marketing Agency
-          </span>
+    <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-6">
+      {/* Masthead — a tool's header, not a landing page hero. */}
+      <section className="border-b border-hairline py-14 sm:py-20">
+        <p className="eyebrow">Brand Shift · Prompt Library</p>
 
-          <div className="flex max-w-3xl flex-col gap-4">
-            <h1 className="text-balance text-4xl font-extrabold leading-[1.15] tracking-tight sm:text-5xl">
-              مكتبة البرومبتات
-              <span className="block bg-gradient-to-l from-brand-500 to-brand-300 bg-clip-text text-transparent">
-                اللي الفريق بيشتغل بيها كل يوم
-              </span>
-            </h1>
-            <p className="text-pretty text-base leading-relaxed text-content-muted sm:text-lg">
-              اختار قسم، افتح برومبت جاهز، املأ الفراغات، وانسخ النتيجة — من غير تجربة
-              وتخمين في كل مرة.
-            </p>
-          </div>
+        <h1 className="mt-5 max-w-2xl text-4xl font-extrabold leading-[1.2] tracking-tight sm:text-[3.25rem] sm:leading-[1.15]">
+          مكتبة البرومبتات اللي الفريق
+          <span className="text-content-subtle"> بيشتغل بيها كل يوم</span>
+        </h1>
 
+        <p className="mt-5 max-w-lg leading-relaxed text-content-muted">
+          اختار قسم، افتح برومبت جاهز، املأ الفراغات، وانسخ النتيجة.
+        </p>
+
+        <div className="mt-9 max-w-xl">
           <SearchBar prompts={prompts} sections={sections} />
-
-          <dl className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 pt-2">
-            {stats.map((s) => (
-              <div key={s.label} className="flex flex-col items-center">
-                <dt className="font-display text-3xl font-extrabold text-content">{s.value}</dt>
-                <dd className="text-xs font-medium text-content-subtle">{s.label}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
+
+        <p className="mt-5 font-latin text-xs text-content-subtle">
+          {prompts.length} برومبت · {sections.length} قسم
+        </p>
       </section>
 
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-14 px-6 py-14">
-        <QuickAccessRows prompts={prompts} />
+      <QuickAccessRows prompts={prompts} />
 
-        <section className="flex flex-col gap-6">
-          <div className="flex flex-col gap-1">
-            <h2 className="text-xl font-bold">كل الأقسام</h2>
-            <p className="text-sm text-content-muted">
-              مقسّمة بالدور — اختار اللي بيوصف شغلك.
-            </p>
-          </div>
+      <section className="py-14">
+        <div className="flex items-baseline justify-between gap-4 pb-5">
+          <h2 className="text-lg font-bold">الأقسام</h2>
+          <p className="text-sm text-content-subtle">مقسّمة بالدور</p>
+        </div>
 
-          <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {sections.map((section) => (
-              <SectionCard
-                key={section.id}
-                section={section}
-                count={getPromptCountForSection(section.id)}
-              />
-            ))}
-          </div>
-        </section>
-      </div>
+        {/* A shared-edge index rather than floating cards — this is a catalogue. */}
+        <div className="grid grid-cols-1 gap-px overflow-hidden rounded-card border border-hairline bg-hairline md:grid-cols-2">
+          {sections.map((section) => (
+            <SectionCard
+              key={section.id}
+              section={section}
+              count={getPromptCountForSection(section.id)}
+            />
+          ))}
+        </div>
+      </section>
     </main>
   );
 }

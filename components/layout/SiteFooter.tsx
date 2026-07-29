@@ -2,12 +2,12 @@ import { Logo } from "@/components/brand/Logo";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-16 border-t border-hairline bg-surface-raised/40">
-      <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-6 px-6 py-10 sm:flex-row">
+    <footer className="mt-auto border-t border-hairline">
+      <div className="mx-auto flex w-full max-w-5xl flex-col items-start justify-between gap-5 px-6 py-9 sm:flex-row sm:items-center">
         <Logo size="sm" />
-        <p className="text-center text-xs text-content-subtle sm:text-end">
-          أداة داخلية لفريق Brand Shift — البرومبتات والبيانات كلها بتفضل على جهازك.
-          <br />© {new Date().getFullYear()} Brand Shift Marketing Agency.
+        <p className="font-latin text-xs leading-relaxed text-content-subtle sm:text-end">
+          البرومبتات والمفضلة بتفضل على جهازك — مفيش سيرفر بيسجّل حاجة.
+          <br />© {new Date().getFullYear()} Brand Shift Marketing Agency
         </p>
       </div>
     </footer>

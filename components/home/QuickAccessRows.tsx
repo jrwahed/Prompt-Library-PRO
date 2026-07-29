@@ -8,9 +8,9 @@ import type { PromptEntry } from "@/lib/types";
 function Row({ title, hint, items }: { title: string; hint: string; items: PromptEntry[] }) {
   return (
     <section className="flex flex-col gap-5">
-      <div className="flex flex-col gap-1">
-        <h2 className="text-xl font-bold">{title}</h2>
-        <p className="text-sm text-content-muted">{hint}</p>
+      <div className="flex items-baseline justify-between gap-4">
+        <h2 className="text-lg font-bold">{title}</h2>
+        <p className="text-sm text-content-subtle">{hint}</p>
       </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((p) => (
@@ -37,16 +37,12 @@ export function QuickAccessRows({ prompts }: { prompts: PromptEntry[] }) {
   if (favorites.length === 0 && recent.length === 0) return null;
 
   return (
-    <div className="flex w-full flex-col gap-12">
+    <div className="flex w-full flex-col gap-12 border-b border-hairline py-14">
       {favorites.length > 0 && (
-        <Row
-          title="⭐ المفضلة"
-          hint="البرومبتات اللي حفظتها على الجهاز ده."
-          items={favorites}
-        />
+        <Row title="المفضلة" hint="محفوظة على الجهاز ده" items={favorites} />
       )}
       {recent.length > 0 && (
-        <Row title="🕘 آخر المستخدمة" hint="آخر 5 برومبتات فتحتها." items={recent} />
+        <Row title="آخر المستخدمة" hint="آخر 5 فتحتها" items={recent} />
       )}
     </div>
   );

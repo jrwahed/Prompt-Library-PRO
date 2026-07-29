@@ -38,8 +38,8 @@ export function SearchBar({
         <Input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="دوّر في كل البرومبتات… (العنوان، الكود، الاستخدام)"
-          className="h-14 rounded-2xl pe-12 ps-12 text-base shadow-brand"
+          placeholder="دوّر في كل البرومبتات…"
+          className="h-12 pe-11 ps-11 text-base"
         />
         {query && (
           <button
@@ -53,7 +53,7 @@ export function SearchBar({
       </div>
 
       {query.trim() && (
-        <Card className="absolute z-30 mt-2 max-h-96 w-full overflow-y-auto p-2 text-start shadow-brand-lg">
+        <Card className="absolute z-30 mt-2 max-h-96 w-full overflow-y-auto p-2 text-start shadow-pop">
           {results.length === 0 ? (
             <p className="p-4 text-center text-sm text-content-muted">
               مفيش نتائج لـ «{query}»
